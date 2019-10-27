@@ -45,13 +45,13 @@ public class EffectManager {
 		return effectMap.values();
 	}
 	
-    public Effect getEffect(ItemStack item) {
-        return effectMap.get(item);
-    }
-    public Set<ItemStack> getKeys() {
-        return effectMap.keySet();
-    }
-    public int getNeededSlots() {;
-        return plugin.getEffectManager().getAmount() / 9 * 9 + 9;
-    }
+	public Effect getEffect(ItemStack item) {
+		return effectMap.get(item);
+	    }
+	public Set<ItemStack> getKeys() {
+		return effectMap.keySet();
+	}
+	public int getNeededSlots() {;
+		return plugin.getEffectManager().getAmount() / 9 * 9 + 9;
+	}
 }
