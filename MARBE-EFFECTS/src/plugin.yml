@@ -1,0 +1,8 @@
+name: 'MarbeEffects'
+version: 0.1
+main: 'pl.c9f.marbeeffects.MarbeEffectsPlugin'
+authors: [C9F]
+website: 'www.youtube.com/c/Marbe1337'
+commands:
+ efekty:
+  aliases: [efekt]
