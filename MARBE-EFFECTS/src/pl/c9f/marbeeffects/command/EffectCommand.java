@@ -6,9 +6,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import pl.c9f.marbeeffects.MarbeEffectsPlugin;
+import pl.c9f.marbeeffects.initializer.Initializer;
 import pl.c9f.marbeeffects.inventory.EffectInventory;
 
-public class EffectCommand implements CommandExecutor{	
+public class EffectCommand implements CommandExecutor, Initializer{	
 	private final MarbeEffectsPlugin plugin;
 	
 	public EffectCommand(MarbeEffectsPlugin plugin) {
@@ -28,6 +29,12 @@ public class EffectCommand implements CommandExecutor{
 			return true;
 		}	
 		return false;
+	}
+
+	@Override
+	public void initialize() {
+		this.plugin.getCommand("efekty").setExecutor(new EffectCommand(this.plugin));
+		
 	}
 
 }
