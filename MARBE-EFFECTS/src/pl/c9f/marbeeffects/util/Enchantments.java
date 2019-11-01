@@ -8,8 +8,7 @@ public final class Enchantments {
 	private static final Map<String, Enchantment> ENCHANTMENTS = new HashMap<>();
 	private static Map<String, Enchantment> ALIASES_ENCHANTMENTS = new HashMap<>();
 	
-	
-	public Enchantments(){
+	public static void loadEnchantments() {
 		ENCHANTMENTS.put("alldamage", Enchantment.DAMAGE_ALL);
 		ENCHANTMENTS.put("sharpness", Enchantment.DAMAGE_ALL);
 		ALIASES_ENCHANTMENTS.put("alldmg", Enchantment.DAMAGE_ALL);
@@ -115,6 +114,8 @@ public final class Enchantments {
 		ALIASES_ENCHANTMENTS.put("unlimited", Enchantment.ARROW_INFINITE);
 		ALIASES_ENCHANTMENTS.put("unlimitedarrows", Enchantment.ARROW_INFINITE);
 		ALIASES_ENCHANTMENTS.put("ai", Enchantment.ARROW_INFINITE);
+	}
+	private Enchantments(){
 	}  
 	
 	public static Enchantment getEnchantment(String string) {
