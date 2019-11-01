@@ -1,7 +1,6 @@
 package pl.c9f.marbeeffects.util; 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -83,16 +82,16 @@ public final class ItemUtil {
 		return glass;
     }
     
-    public static void remove(Player player, Material material, short durability, int amount) {
-    	Arrays.stream(player.getInventory().getContents()).filter(itemStack -> itemStack != null && itemStack.getType() == material && itemStack.getDurability() == durability).forEach(itemStack -> {
-    		if (itemStack.getAmount() >= amount) itemStack.setAmount(itemStack.getAmount() - amount);
-    		else player.getInventory().removeItem(itemStack);
-    		player.getInventory().contains(new ItemStack(Material.EMERALD_BLOCK), 1);
-    	});
-    }
-    
-    public static int getAmount(Player player, Material material, short durability) {
-        return Arrays.stream(player.getInventory().getContents()).filter(itemStack -> itemStack != null && itemStack.getType() == material && itemStack.getDurability() == durability).mapToInt(ItemStack::getAmount).sum();
+    public static int getAmountOfItem(final Material material, final Player player, final short durability) {
+        int amount = 0;
+        ItemStack[] contents;
+        for (int length = (contents = player.getInventory().getContents()).length, i = 0; i < length; ++i) {
+            final ItemStack itemStack = contents[i];
+            if (itemStack != null && itemStack.getType().equals((Object)material) && itemStack.getDurability() == durability) {
+                amount += itemStack.getAmount();
+            }
+        }
+        return amount;
     }
 
 }
