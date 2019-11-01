@@ -18,14 +18,18 @@ public class MarbeEffectsPlugin extends JavaPlugin{
 	
 	@Override
 	public void onEnable(){
-		Effects.loadEffects();
-		Enchantments.loadEnchantments();
-		new Settings(this).load();
+		this.getLogger().info("Loading plugin..");
 		this.effectInventory = new EffectInventory(this);
-		this.getCommand("efekty").setExecutor(new EffectCommand(this));
 		this.effectManager = new EffectManager(this);
-		this.effectManager.loadAll();
-		this.getServer().getPluginManager().registerEvents(new InventoryClickListener(this), this);
+		new MarbeEffectsInitializer(this.getLogger()).initialize(
+				new Effects(),
+				new Enchantments(),
+				new Settings(this),
+				new EffectCommand(this),
+				this.effectManager,
+				new InventoryClickListener(this)	
+				);
+		this.getLogger().info("Loaded plugin!");
 	}
 
 }
