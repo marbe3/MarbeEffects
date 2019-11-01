@@ -9,11 +9,12 @@ import org.bukkit.inventory.ItemStack;
 
 import pl.c9f.marbeeffects.MarbeEffectsPlugin;
 import pl.c9f.marbeeffects.data.Effect;
+import pl.c9f.marbeeffects.initializer.Initializer;
 import pl.c9f.marbeeffects.store.Settings;
 import pl.c9f.marbeeffects.util.ColorUtil;
 import pl.c9f.marbeeffects.util.ItemUtil;
 
-public class InventoryClickListener implements Listener{
+public class InventoryClickListener implements Listener, Initializer{
     private final MarbeEffectsPlugin plugin;
 
     public InventoryClickListener(MarbeEffectsPlugin plugin) {
@@ -44,4 +45,10 @@ public class InventoryClickListener implements Listener{
     		}		
         }
     }
+
+	@Override
+	public void initialize() {
+		this.plugin.getServer().getPluginManager().registerEvents(new InventoryClickListener(this.plugin), this.plugin);
+		
+	}
 }
