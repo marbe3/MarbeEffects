@@ -32,8 +32,10 @@ public class InventoryClickListener implements Listener{
     		final Effect effect = plugin.getEffectManager().getEffect(icon);
     		if(effect == null) return;
     		if(player.getInventory().contains(effect.getItem(), effect.getPrice())){
-    			ItemUtil.remove(player, effect.getItem(), (short)0, effect.getPrice());
-    			player.removePotionEffect(effect.getEffect().getType());
+    			int i = ItemUtil.getAmountOfItem(effect.getItem(), player, (short) 0) - effect.getPrice();
+    			player.getInventory().remove(effect.getItem());
+    			player.getInventory().addItem(new ItemStack(effect.getItem(), i));
+    			player.removePotionEffect(effect.getEffect().getType());  			
     			player.addPotionEffect(effect.getEffect());
     			player.sendMessage(ColorUtil.fixColor(Settings.SUCCESSFUL_BUY_MESSAGE));
     			
