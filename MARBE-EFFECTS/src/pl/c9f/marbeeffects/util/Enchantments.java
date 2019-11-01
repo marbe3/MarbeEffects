@@ -2,13 +2,17 @@ package pl.c9f.marbeeffects.util;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import org.bukkit.enchantments.Enchantment;
+
+import pl.c9f.marbeeffects.initializer.Initializer;
    
-public final class Enchantments {
+public final class Enchantments implements Initializer{
 	private static final Map<String, Enchantment> ENCHANTMENTS = new HashMap<>();
 	private static Map<String, Enchantment> ALIASES_ENCHANTMENTS = new HashMap<>();
 	
-	public static void loadEnchantments() {
+	@Override
+	public void initialize() {
 		ENCHANTMENTS.put("alldamage", Enchantment.DAMAGE_ALL);
 		ENCHANTMENTS.put("sharpness", Enchantment.DAMAGE_ALL);
 		ALIASES_ENCHANTMENTS.put("alldmg", Enchantment.DAMAGE_ALL);
@@ -114,9 +118,7 @@ public final class Enchantments {
 		ALIASES_ENCHANTMENTS.put("unlimited", Enchantment.ARROW_INFINITE);
 		ALIASES_ENCHANTMENTS.put("unlimitedarrows", Enchantment.ARROW_INFINITE);
 		ALIASES_ENCHANTMENTS.put("ai", Enchantment.ARROW_INFINITE);
-	}
-	private Enchantments(){
-	}  
+	} 
 	
 	public static Enchantment getEnchantment(String string) {
 		String enchantmentName = string.toLowerCase();
