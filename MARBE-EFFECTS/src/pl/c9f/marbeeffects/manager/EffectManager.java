@@ -12,18 +12,20 @@ import org.bukkit.potion.PotionEffect;
 
 import pl.c9f.marbeeffects.MarbeEffectsPlugin;
 import pl.c9f.marbeeffects.data.Effect;
+import pl.c9f.marbeeffects.initializer.Initializer;
 import pl.c9f.marbeeffects.util.Effects;
 import pl.c9f.marbeeffects.util.ItemUtil;
 
-public class EffectManager {
+public class EffectManager implements Initializer{
 	private final MarbeEffectsPlugin plugin;
 	private Map<ItemStack, Effect> effectMap = new ConcurrentHashMap<>();
 	
 	public EffectManager(MarbeEffectsPlugin plugin) {
 		this.plugin = plugin;
 	}
+	@Override
 	@SuppressWarnings("deprecation")
-	public void loadAll() {
+	public void initialize() {
 		final ConfigurationSection cs = plugin.getConfig().getConfigurationSection("effects");
 		for(String s : cs.getKeys(false)) {
 			int item = plugin.getConfig().getInt(cs.getName() + "." + s + "." + "item");
