@@ -11,6 +11,4 @@ effects:
   icon: "276 1 name:&c&6Sila_1 lore:&c_Cena>_10_blokow_emeraldow&nl&c_Czas>_100s"
   price: 10
   item: 133
-  effect: "INCREASE_DAMAGE"
-  duration: 100
-  amplifier: 0
+  effect: "INCREASE_DAMAGE:10:2"
