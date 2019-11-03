@@ -64,7 +64,7 @@ public final class ItemUtil {
 					SkullMeta im = (SkullMeta)is.getItemMeta();
 					im.setOwner(ColorUtil.fixColor(trim[1]));
 				} else {
-					Enchantment e = Enchantments.getEnchantment(trim[0]);
+					Enchantment e = Enchantment.getByName(trim[0]);
 					if (e != null) {
 						int lvl = Integer.parseInt(trim[1]);
 						ItemMeta im = is.getItemMeta();
