@@ -13,8 +13,8 @@ import org.bukkit.potion.PotionEffect;
 import pl.c9f.marbeeffects.MarbeEffectsPlugin;
 import pl.c9f.marbeeffects.data.Effect;
 import pl.c9f.marbeeffects.initializer.Initializer;
-import pl.c9f.marbeeffects.util.Effects;
 import pl.c9f.marbeeffects.util.ItemUtil;
+import pl.c9f.marbeeffects.util.PotionUtil;
 
 public class EffectManager implements Initializer{
 	private final MarbeEffectsPlugin plugin;
@@ -28,16 +28,11 @@ public class EffectManager implements Initializer{
 	public void initialize() {
 		final ConfigurationSection cs = plugin.getConfig().getConfigurationSection("effects");
 		for(String s : cs.getKeys(false)) {
-			int item = plugin.getConfig().getInt(cs.getName() + "." + s + "." + "item");
-			String icon = plugin.getConfig().getString(cs.getName() + "." + s + "."  + "icon");
-			int price = plugin.getConfig().getInt(cs.getName() + "." + s  + "." + "price");
-			String effect = plugin.getConfig().getString(cs.getName() + "." + s + "." + "effect");
-			int duration = plugin.getConfig().getInt(cs.getName() + "." + s + "." + "duration");
-			int amplifier = plugin.getConfig().getInt(cs.getName() + "." + s + "." + "amplifier");
-			Material item2 = Material.getMaterial(item);
-			ItemStack icon2 = ItemUtil.parseItemStack(icon);
-			PotionEffect effect2 = new PotionEffect(Effects.getEffect(effect), duration * 20, amplifier);
-			effectMap.put(icon2, new Effect(icon2, price, item2, effect2));
+			final Material item3 = Material.getMaterial(cs.getInt(s + ".item"));
+			final ItemStack icon3 = ItemUtil.parseItemStack(cs.getString(s + ".icon"));
+			final int price3 = cs.getInt(s + ".price");
+			final PotionEffect effect3 = PotionUtil.potionEffectFromString(cs.getString(s + ".effect"));
+			effectMap.put(icon3, new Effect(icon3, price3, item3, effect3));
 		}
 	}
 	public int getAmount() {
