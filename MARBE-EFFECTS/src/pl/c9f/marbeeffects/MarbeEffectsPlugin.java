@@ -8,8 +8,6 @@ import pl.c9f.marbeeffects.inventory.EffectInventory;
 import pl.c9f.marbeeffects.listener.InventoryClickListener;
 import pl.c9f.marbeeffects.manager.EffectManager;
 import pl.c9f.marbeeffects.store.Settings;
-import pl.c9f.marbeeffects.util.Effects;
-import pl.c9f.marbeeffects.util.Enchantments;
 @Getter
 public class MarbeEffectsPlugin extends JavaPlugin{
 	private EffectManager effectManager;
@@ -22,12 +20,11 @@ public class MarbeEffectsPlugin extends JavaPlugin{
 		this.effectInventory = new EffectInventory(this);
 		this.effectManager = new EffectManager(this);
 		new MarbeEffectsInitializer(this.getLogger()).initialize(
-				new Effects(),
-				new Enchantments(),
 				new Settings(this),
 				new EffectCommand(this),
 				this.effectManager,
-				new InventoryClickListener(this)	
+				new InventoryClickListener(this),
+				this.effectInventory
 				);
 		this.getLogger().info("Loaded plugin!");
 	}
